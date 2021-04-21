@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { ReposList } from './reposList'
 import { TextField, Button, Container } from '@material-ui/core'
-
 import { makeStyles } from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,14 +51,12 @@ export const MainView = () => {
                         variant="outlined"
                         value={username}
                         onChange={handleOnChange}
-                        onKeyDown={(e) => e.stopPropagation()}         
+                                
                 />
                 <Button onClick={handleOnSubmit} className={classes.root} variant="outlined"> Find repositories</Button>
             </form>
-            
             <ReposList name={nameToSubmit}/>
         </Container>
-        
         </div>
     )
 }

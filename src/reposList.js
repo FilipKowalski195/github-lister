@@ -5,21 +5,19 @@ import { useEffect } from 'react'
 import { DataGrid } from '@material-ui/data-grid';
 
 
+const columns = [
+  { field: 'id', headerName: 'ID', width: 70, hide: true},
+  { field: 'name', headerName: 'Repository name', width: 180 },
+  { field: 'stars', headerName: 'Stars no.', type: 'number', width: 150 },
+  { field: 'forks', headerName: 'Forks no.', type: 'number', width: 150 },
+  { field: 'lang', headerName: 'Programming language', width: 250 },
+];
+
 export const ReposList = (props) => {
-
-  const columns = [
-
-    { field: 'id', headerName: 'ID', width: 70, hide: true},
-    { field: 'name', headerName: 'Repository name', width: 180 },
-    { field: 'stars', headerName: 'Stars no.', type: 'number', width: 150 },
-    { field: 'forks', headerName: 'Forks no.', type: 'number', width: 150 },
-    { field: 'lang', headerName: 'Programming language', width: 250 },
-    
-  ];
-  
-    const dispatch = useDispatch()
-    const repos = useSelector(selectRepositories)
  
+  const dispatch = useDispatch()
+  const repos = useSelector(selectRepositories)
+  console.log("render")
     useEffect(() => {
       if (props.name !== '') { 
         dispatch(fetchRepositories(props.name))
@@ -36,9 +34,10 @@ export const ReposList = (props) => {
       }
     }), [repos])
 
-      return (
-        <div style={{ height: 500, width: '100%' }}>
-          <DataGrid id="gridContainer" rows={rows} columns={columns} pageSize={7}/>
-        </div>
-      );
-  }
+ 
+  return (
+    <div style={{ height: 400, width: "100%" }}>
+      <DataGrid rows={rows} columns={columns} pageSize={5} />
+    </div>
+  );
+}
