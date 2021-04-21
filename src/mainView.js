@@ -39,14 +39,26 @@ export const MainView = () => {
     }
 
     return (
-        <Container fixed maxWidth="sm">
+        <div>
+        <Container fixed maxWidth="md">
             <h1 className={classes.header}> Git Lister </h1> 
             <form onSubmit={handleOnSubmit} className={classes.root}>
-                <TextField id="outlined-basic" className={classes.root} label="Github username" variant="outlined" value={username} onChange={handleOnChange}/>
+                <TextField 
+                        autoFocus
+                        id="outlined-basic" 
+                        className={classes.root} 
+                        label="Github username" 
+                        variant="outlined"
+                        value={username}
+                        onChange={handleOnChange}
+                        onKeyDown={(e) => e.stopPropagation()}         
+                />
                 <Button onClick={handleOnSubmit} className={classes.root} variant="outlined"> Find repositories</Button>
             </form>
             
             <ReposList name={nameToSubmit}/>
         </Container>
+        
+        </div>
     )
 }
