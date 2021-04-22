@@ -30,6 +30,7 @@ export const MainView = () => {
     const classes = useStyles();
 
     const handleOnChange = (evt) => { 
+        evt.stopPropagation()
         setUsername(evt.target.value)
     }
 

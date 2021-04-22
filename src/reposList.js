@@ -1,8 +1,10 @@
 import { useMemo } from 'react'
-import { selectRepositories, fetchRepositories } from './features/repositories/repositoriesSlice'
+import { selectRepositories, fetchRepositories, selectError } from './features/repositories/repositoriesSlice'
 import { useDispatch, useSelector, } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { DataGrid } from '@material-ui/data-grid';
+import { Alert } from '@material-ui/lab'
+import { Fade, CircularProgress } from '@material-ui/core'
 
 
 const columns = [
@@ -17,14 +19,26 @@ export const ReposList = (props) => {
  
   const dispatch = useDispatch()
   const repos = useSelector(selectRepositories)
-  console.log("render")
+  const error = useSelector(selectError)
+  const loading = useSelector(state => state.repositories.loading)
+  const [checked, setChecked] = useState(false); 
+  const [sortModel, setSortModel] = useState([
+    { field: 'stars', sort: 'desc' },
+  ]);
+  
     useEffect(() => {
       if (props.name !== '') { 
-        dispatch(fetchRepositories(props.name))
+          dispatch(fetchRepositories(props.name))
         }
       }, [props.name, dispatch])
   
-    const rows = useMemo(() =>  repos.map((data) => { 
+    useEffect(() => { 
+      (repos.length > 0 && error > -1) ? setChecked(true) : setChecked(false)
+
+    }, [error, repos])
+
+    const rows = useMemo(() => repos
+    .map((data) => { 
       return {
         id: data.id,
         name: data.name, 
@@ -34,10 +48,23 @@ export const ReposList = (props) => {
       }
     }), [repos])
 
- 
+    const alert = useMemo(() => {
+      if (error === -1 || props.name === '') return <Alert severity="info">Enter github username</Alert>
+      else if (error === 0 && repos.length === 0) return <Alert severity="warning"> User had no public repositories </Alert> 
+      else if (error === 0) return <Alert severity="success"> Found {repos.length} repozitories </Alert> 
+      return <Alert severity="error">Error - Repositories not Found! </Alert>
+    }, [error, repos, props.name])
+      
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <DataGrid rows={rows} columns={columns} pageSize={5} />
+    <div style={{textAlign: 'center'}}> 
+      {alert} 
+      {loading !== 'idle' ? <CircularProgress style={{marginTop: '25px'}} color="secondary" /> :
+        <Fade in={true}>
+            <div style={{width: "100%", marginTop: '20px'}}>
+              <DataGrid rows={rows} columns={columns} pageSize={7} autoHeight sortModel={sortModel}/> 
+            </div> 
+        </Fade>
+      }
     </div>
   );
 }
