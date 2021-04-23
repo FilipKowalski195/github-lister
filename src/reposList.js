@@ -55,8 +55,8 @@ export const ReposList = (props) => {
 
       {loading !== 'idle' ? <CircularProgress style={{marginTop: '25px'}} color="secondary" /> :
         <Fade in={checked}>
-            <div style={{width: "100%", marginTop: '20px'}}>
-              <DataGrid rows={rows} columns={columns} pageSize={7} autoHeight/> 
+            <div style={{height: '450px', width: "100%", marginTop: '20px'}}>
+              <DataGrid rows={rows} columns={columns} pageSize={7}/> 
             </div> 
         </Fade>
       }
