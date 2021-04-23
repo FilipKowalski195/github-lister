@@ -22,7 +22,6 @@ export const ReposList = (props) => {
   const error = useSelector(selectError)
   const loading = useSelector(selectLoading)
   const [checked, setChecked] = useState(false); 
-  const sortModel = [{ field: 'stars', sort: 'desc' }]
   
     useEffect(() => {
       if (props.name !== '') { 
@@ -35,7 +34,8 @@ export const ReposList = (props) => {
 
     }, [error, repos])
 
-    const rows = useMemo(() => repos
+    const rows = useMemo(() => repos.slice()
+    .sort((a, b) => a.stargazers_count < b.stargazers_count ? 1 : -1)
     .map((data) => { 
       return {
         id: data.id,
@@ -50,12 +50,13 @@ export const ReposList = (props) => {
       
   return (
     <div style={{textAlign: 'center'}}> 
-      <InfoAlert err={error} length={repos.length} name={props.name} loading={loading}/>
+
+      <InfoAlert err={error} length={repos.length} name={props.name}/>
+
       {loading !== 'idle' ? <CircularProgress style={{marginTop: '25px'}} color="secondary" /> :
         <Fade in={checked}>
-          
             <div style={{width: "100%", marginTop: '20px'}}>
-              <DataGrid rows={rows} columns={columns} pageSize={7} autoHeight sortModel={sortModel} /> 
+              <DataGrid rows={rows} columns={columns} pageSize={7} autoHeight/> 
             </div> 
         </Fade>
       }
