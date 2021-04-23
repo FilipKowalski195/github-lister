@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
-import { selectRepositories, fetchRepositories, selectError } from './features/repositories/repositoriesSlice'
+import { fetchRepositories, selectError, selectLoading, selectRepositories } from './features/repositories/repositoriesSlice'
 import { useDispatch, useSelector, } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { DataGrid } from '@material-ui/data-grid';
-import { Alert } from '@material-ui/lab'
 import { Fade, CircularProgress } from '@material-ui/core'
+import InfoAlert from './infoAlert'
 
 
 const columns = [
@@ -20,11 +20,9 @@ export const ReposList = (props) => {
   const dispatch = useDispatch()
   const repos = useSelector(selectRepositories)
   const error = useSelector(selectError)
-  const loading = useSelector(state => state.repositories.loading)
+  const loading = useSelector(selectLoading)
   const [checked, setChecked] = useState(false); 
-  const [sortModel, setSortModel] = useState([
-    { field: 'stars', sort: 'desc' },
-  ]);
+  const sortModel = [{ field: 'stars', sort: 'desc' }]
   
     useEffect(() => {
       if (props.name !== '') { 
@@ -48,20 +46,16 @@ export const ReposList = (props) => {
       }
     }), [repos])
 
-    const alert = useMemo(() => {
-      if (error === -1 || props.name === '') return <Alert severity="info">Enter github username</Alert>
-      else if (error === 0 && repos.length === 0) return <Alert severity="warning"> User had no public repositories </Alert> 
-      else if (error === 0) return <Alert severity="success"> Found {repos.length} repozitories </Alert> 
-      return <Alert severity="error">Error - Repositories not Found! </Alert>
-    }, [error, repos, props.name])
+    
       
   return (
     <div style={{textAlign: 'center'}}> 
-      {alert} 
+      <InfoAlert err={error} length={repos.length} name={props.name} loading={loading}/>
       {loading !== 'idle' ? <CircularProgress style={{marginTop: '25px'}} color="secondary" /> :
-        <Fade in={true}>
+        <Fade in={checked}>
+          
             <div style={{width: "100%", marginTop: '20px'}}>
-              <DataGrid rows={rows} columns={columns} pageSize={7} autoHeight sortModel={sortModel}/> 
+              <DataGrid rows={rows} columns={columns} pageSize={7} autoHeight sortModel={sortModel} /> 
             </div> 
         </Fade>
       }

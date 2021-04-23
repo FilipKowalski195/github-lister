@@ -36,6 +36,7 @@ export const repositoriesSlice = createSlice({
       [fetchRepositories.rejected]: (state, action) => { 
         if (state.loading === 'pending') { 
           state.loading = 'idle'
+          state.repositories = 
           state.error = action.error
         }
       }
@@ -46,5 +47,6 @@ export const repositoriesSlice = createSlice({
 
 export const selectRepositories = (state) => state.repositories.repositories;
 export const selectError = (state) => state.repositories.error; 
+export const selectLoading = (state) => state.repositories.loading; 
 
 export default repositoriesSlice.reducer;
