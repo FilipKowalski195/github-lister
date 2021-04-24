@@ -13,7 +13,8 @@ export default function DetailedInfo(props) {
         <DialogTitle>Repositories details</DialogTitle>
         <DialogContent>
           <List> 
-          <ListItem key={data.id}>Full name: {data.full_name}</ListItem>
+            <ListItem key={data.id}>Full name: {data.full_name}</ListItem>
+            <ListItem>Description: {data.description} </ListItem>
             <ListItem>Stars count: {data.stargazers_count}</ListItem>
             <ListItem>Forks count: {data.forks}</ListItem>
             <ListItem>Open issues: {data.open_issues}</ListItem>

@@ -11,7 +11,8 @@ import {
   TableContainer, 
   Paper,
   Table, 
-  TableHead, 
+  TableHead,
+  TablePagination 
   } from '@material-ui/core'
 
 
@@ -39,6 +40,8 @@ export default function RepositoriesTable(props) {
 
     const [valueToOrderBy, setValueToOrderBy] = useState('stars')
     const [sortingDirection, setSortingDirection] = useState('desc')
+    const [page, setPage] = useState(0)
+    const [rowsPerPage, setRowsPerPage] = useState(5);
 
     useEffect(() => {
             setValueToOrderBy('stars')
@@ -89,28 +92,39 @@ export default function RepositoriesTable(props) {
         return stabilizedThis.map((el) => el[0]);
       }
 
+      const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+      };
+    
+      const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+      };
+
     return (
-        <TableContainer component={Paper}>
+            <TableContainer component={Paper}>
             <Table aria-label="simple table">
             <TableHead>
                 <TableRow>
                 {columns.map(row => (
                     <TableCell>
                     <TableSortLabel active={valueToOrderBy === row.field} direction={sortingDirection} onClick={() => handleHeaderClick(row.field)}>
-                    {row.headerName}
+                        {row.headerName}
                     </TableSortLabel>
                     </TableCell>
                 ))}
                 </TableRow>
             </TableHead>
             <TableBody>
-                {stableSort(rows, getComparator(sortingDirection, valueToOrderBy)).map((row) => (
+                {stableSort(rows, getComparator(sortingDirection, valueToOrderBy))
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => (
                 <TableRow 
                     className={classes.root} 
                     key={row.id} 
                     onClick={() => props.onRowClickHandler(row.id)}
                 >
-                    <TableCell component="th" scope="row">{row.name}</TableCell>
+                    <TableCell component="th" scope="row" style={{width:'300px'}}>{row.name}</TableCell>
                     <TableCell align="center">{row.stars}</TableCell>
                     <TableCell align="center">{row.forks}</TableCell>
                     <TableCell align="center">{row.lang}</TableCell>
@@ -118,6 +132,16 @@ export default function RepositoriesTable(props) {
                 ))}
             </TableBody>
             </Table>
-        </TableContainer> 
+            <TablePagination
+                rowsPerPageOptions={[4, 8, 12]}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onChangePage={handleChangePage}
+                onChangeRowsPerPage={handleChangeRowsPerPage}
+            />
+        </TableContainer>
+ 
     )
 }
