@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const MainView = () => {
     
-    const [username, setUsername] = useState('allegro')
+    const [username, setUsername] = useState('')
     const classes = useStyles();
     const dispatch = useDispatch()
 

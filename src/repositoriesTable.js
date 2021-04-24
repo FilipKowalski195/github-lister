@@ -1,9 +1,7 @@
 import { useMemo } from 'react'
-import { fetchRepositories, selectError, selectLength, selectLoading, selectRepositories, selectUser } from './features/repositories/repositoriesSlice'
-import { useDispatch, useSelector, } from 'react-redux'
+import { selectRepositories} from './features/repositories/repositoriesSlice'
+import { useSelector, } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { Fade, CircularProgress, Dialog, DialogContent, DialogTitle, ListItem } from '@material-ui/core'
-import InfoAlert from './infoAlert'
 import { makeStyles } from '@material-ui/core/styles'
 import { 
   TableSortLabel,
@@ -33,7 +31,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
   
-export default function RepositoriesTable() {
+export default function RepositoriesTable(props) {
 
     const classes = useStyles()
 
@@ -107,7 +105,11 @@ export default function RepositoriesTable() {
             </TableHead>
             <TableBody>
                 {stableSort(rows, getComparator(sortingDirection, valueToOrderBy)).map((row) => (
-                <TableRow className={classes.root} key={row.id} onClick={(e)=> console.log(e)}>
+                <TableRow 
+                    className={classes.root} 
+                    key={row.id} 
+                    onClick={() => props.onRowClickHandler(row.id)}
+                >
                     <TableCell component="th" scope="row">{row.name}</TableCell>
                     <TableCell align="center">{row.stars}</TableCell>
                     <TableCell align="center">{row.forks}</TableCell>

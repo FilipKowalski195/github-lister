@@ -56,6 +56,6 @@ export const selectError = (state) => state.repositories.error;
 export const selectLoading = (state) => state.repositories.loading; 
 export const selectLength = (state) => state.repositories.repositories.length
 export const selectUser = (state) => state.repositories.user
-
+export const selectDetailedRepository = (state) => state.repositories.repositories;
 
 export default repositoriesSlice.reducer;
