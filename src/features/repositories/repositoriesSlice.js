@@ -15,11 +15,17 @@ export const fetchRepositories = createAsyncThunk(
 export const repositoriesSlice = createSlice({
   name: 'repositories',
   initialState: {
+    user: '',
     error: -1,
     loading: 'idle',
     repositories: []
   },
-  reducers: {},
+  reducers: {
+    updateUser(state, action) { 
+      const user = action.payload
+      state.user = user;   
+    }
+  },
   extraReducers: { 
       [fetchRepositories.pending]: state => { 
         if (state.loading === 'idle') { 
@@ -43,10 +49,13 @@ export const repositoriesSlice = createSlice({
   }
 })
 
-
+export const { updateUser } = repositoriesSlice.actions
 
 export const selectRepositories = (state) => state.repositories.repositories;
 export const selectError = (state) => state.repositories.error; 
 export const selectLoading = (state) => state.repositories.loading; 
+export const selectLength = (state) => state.repositories.repositories.length
+export const selectUser = (state) => state.repositories.user
+
 
 export default repositoriesSlice.reducer;

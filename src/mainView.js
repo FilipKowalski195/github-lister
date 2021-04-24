@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { ReposList } from './reposList'
 import { TextField, Button, Container } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-
+import { useDispatch } from 'react-redux'
+import { updateUser } from './features/repositories/repositoriesSlice'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
 export const MainView = () => {
     
     const [username, setUsername] = useState('allegro')
-    const [nameToSubmit, setNameToSubmit] = useState('');
     const classes = useStyles();
+    const dispatch = useDispatch()
 
     const handleOnChange = (evt) => { 
         evt.stopPropagation()
@@ -36,11 +37,10 @@ export const MainView = () => {
 
     const handleOnSubmit = (evt) => { 
         evt.preventDefault();
-        setNameToSubmit(username)
+        dispatch(updateUser(username))
     }
 
     return (
-        <div>
         <Container fixed maxWidth="md">
             <h1 className={classes.header}> Git Lister </h1> 
             <form onSubmit={handleOnSubmit} className={classes.root}>
@@ -56,8 +56,7 @@ export const MainView = () => {
                 />
                 <Button onClick={handleOnSubmit} className={classes.root} variant="outlined"> Find repositories</Button>
             </form>
-            <ReposList name={nameToSubmit}/>
+            <ReposList />
         </Container>
-        </div>
     )
 }
