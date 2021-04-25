@@ -8,14 +8,14 @@ In Table user can sort repositories by columns, and if he wants more information
 If a user wanted to fetch the repositories of users that does not have any, or doesn't exist. The application will inform him about it.
 
 ### `Installation`
-***You must have node.js installed ***
+> **You must have node.js installed** 
 
 Once you cloned repository with:
-  git clone https://github.com/FilipKowalski195/github-lister.git
+  > git clone https://github.com/FilipKowalski195/github-lister.git
  Go to the created folder na use 
-  npm install 
+  > npm install 
  It might take a little while, when its finish 
-  npm start 
+  > npm start 
  Application should start in your localhost:3000 
 
 [![IMAGE Git Lister - Overview video](https://img.youtube.com/vi/Tm0TfDslDpM/0.jpg)](https://www.youtube.com/watch?v=Tm0TfDslDpM)
