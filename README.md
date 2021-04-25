@@ -12,17 +12,17 @@ If a user wanted to fetch the repositories of account that does not have any, or
 
 Once you cloned repository with:
 
-  > git clone https://github.com/FilipKowalski195/github-lister.git
-
-Go to the created folder na use 
-  ```console
-user:~$ npm install 
-
+```console
+~$ git clone https://github.com/FilipKowalski195/github-lister.git
 ``` 
-
+Go to the created folder and use command 
+  ```console
+~$ npm install 
+``` 
  It might take a little while, when its finish 
-  > npm start 
-
+  ```console
+~$ npm start  
+``` 
  Application should start in your localhost:3000 
  
  
