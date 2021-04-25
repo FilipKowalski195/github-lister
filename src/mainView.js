@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ReposList } from './reposList'
+import { RepositoriesView } from './repositoriesView'
 import { TextField, Button, Container } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux'
@@ -50,13 +50,14 @@ export const MainView = () => {
                         className={classes.root} 
                         label="Github username" 
                         variant="outlined"
+                        color="primary"
                         value={username}
                         onChange={handleOnChange}
                                 
                 />
-                <Button onClick={handleOnSubmit} className={classes.root} variant="outlined"> Find repositories</Button>
+                <Button onClick={handleOnSubmit} className={classes.root} variant="outlined" color="primary" > Find repositories</Button>
             </form>
-            <ReposList />
+            <RepositoriesView />
         </Container>
     )
 }

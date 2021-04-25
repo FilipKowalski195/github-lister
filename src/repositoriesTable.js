@@ -17,17 +17,17 @@ import {
 
 
 const columns = [
-{ field: 'name', headerName: 'Repository name' },
-{ field: 'stars', headerName: 'Stars no.' },
-{ field: 'forks', headerName: 'Forks no.' },
-{ field: 'lang', headerName: 'Programming language'},
+{ id: 0,field: 'name', headerName: 'Repository name' },
+{ id: 1,field: 'stars', headerName: 'Stars no.' },
+{ id: 2,field: 'forks', headerName: 'Forks no.' },
+{ id: 3,field: 'lang', headerName: 'Programming language'},
 ];
 
 const useStyles = makeStyles(() => ({
     root: { 
       '&:hover': { 
         cursor: 'pointer',
-        backgroundColor: '#c0c0c0',
+        backgroundColor: '#f0f0f0',
       }
     }
 }));
@@ -106,10 +106,10 @@ export default function RepositoriesTable(props) {
             <Table aria-label="simple table">
             <TableHead>
                 <TableRow>
-                {columns.map(row => (
-                    <TableCell>
-                    <TableSortLabel active={valueToOrderBy === row.field} direction={sortingDirection} onClick={() => handleHeaderClick(row.field)}>
-                        {row.headerName}
+                {columns.map(column => (
+                    <TableCell key={column.id}>
+                    <TableSortLabel active={valueToOrderBy === column.field} direction={sortingDirection} onClick={() => handleHeaderClick(column.field)}>
+                        {column.headerName}
                     </TableSortLabel>
                     </TableCell>
                 ))}
@@ -133,7 +133,7 @@ export default function RepositoriesTable(props) {
             </TableBody>
             </Table>
             <TablePagination
-                rowsPerPageOptions={[4, 8, 12]}
+                rowsPerPageOptions={[5, 10, 15]}
                 component="div"
                 count={rows.length}
                 rowsPerPage={rowsPerPage}

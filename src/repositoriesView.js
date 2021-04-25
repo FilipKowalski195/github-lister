@@ -10,7 +10,7 @@ import RepositoriesTable  from './repositoriesTable'
 import DetailedInfo from './detailedInfo'
 
 
-export const ReposList = () => {
+export const RepositoriesView = () => {
  
   const dispatch = useDispatch()
 
@@ -23,7 +23,6 @@ export const ReposList = () => {
   const [dialogOpen, setDialogOpen] = useState(false)
   const [detailedId, setDetailedId] = useState(0)
 
-  console.log(length)
   useEffect(() => { 
     (length > 0 && error > -1) ? setChecked(true) : setChecked(false)
   }, [error, length])
@@ -45,7 +44,8 @@ export const ReposList = () => {
 
   return (
 
-    <div style={{textAlign: 'center'}}> 
+  
+  <div style={{textAlign: 'center'}}> 
       
       <InfoAlert />
       
