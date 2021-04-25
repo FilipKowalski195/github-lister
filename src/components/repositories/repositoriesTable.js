@@ -92,7 +92,7 @@ export default function RepositoriesTable(props) {
     return stabilizedThis.map((el) => el[0]);
   }
 
-  const handleChangePage = (newPage) => {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
