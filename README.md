@@ -28,5 +28,5 @@ Go to the created folder and use command
  
 ### `Video presentation` 
 
-[![IMAGE Git Lister - Overview video](https://img.youtube.com/vi/Tm0TfDslDpM/0.jpg)](https://www.youtube.com/watch?v=Tm0TfDslDpM)
+[![IMAGE Git Lister - Overview video](https://img.youtube.com/vi/CJhDKIPu0PI/0.jpg)](https://www.youtube.com/watch?v=CJhDKIPu0PI)
 
