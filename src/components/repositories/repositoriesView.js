@@ -1,5 +1,12 @@
 
-import { fetchRepositories, selectError, selectLength, selectLoading, selectUser } from '../../features/repositories/repositoriesSlice'
+import { 
+  fetchRepositories, 
+  selectError, 
+  selectLength, 
+  selectLoading, 
+  selectUser 
+} from '../../features/repositories/repositoriesSlice'
+
 import { useDispatch, useSelector, } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { Fade, CircularProgress } from '@material-ui/core'
@@ -43,17 +50,12 @@ export const RepositoriesView = () => {
   }
 
   return (
-
-  
   <div style={{textAlign: 'center'}}> 
-      
       <InfoAlert />
-      
       { loading !== 'idle' ?
         <CircularProgress style={{marginTop: '25px'}} color="secondary" /> 
         :
         <Fade in={checked} >
-
             <div style={{height: '450px', width: "100%", marginTop: '20px'}}>
               <RepositoriesTable onRowClickHandler={onRowClickHandler}/> 
             </div> 
