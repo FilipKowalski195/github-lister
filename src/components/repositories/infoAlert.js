@@ -13,11 +13,10 @@ export default function InfoAlert() {
       if (error === -1 || name === '') {
           return <Alert severity="info">Enter github username</Alert>
       } else if (error === 0 && reposLenght === 0) {
-          return <Alert severity="warning"> User had no public repositories </Alert> 
+          return <Alert severity="warning"> The user has no public repositories </Alert> 
       } else if (error !== 0) {
             return <Alert severity="error"> Error - Repositories not Found! </Alert>
       }
-          
 
     }, [error, name, reposLenght])
   
