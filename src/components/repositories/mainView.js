@@ -3,7 +3,9 @@ import { RepositoriesView } from './repositoriesView'
 import { TextField, Button, Container } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux'
-import { updateUser } from './features/repositories/repositoriesSlice'
+import { updateUser } from '../../features/repositories/repositoriesSlice'
+
+import photo from '../../imgs/logo.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +44,7 @@ export const MainView = () => {
 
     return (
         <Container fixed maxWidth="md">
-            <h1 className={classes.header}> Git Lister </h1> 
+            <h1 className={classes.header}><img style={{width:'250px'}}src={photo} alt={"Git Lister logo"} /> </h1> 
             <form onSubmit={handleOnSubmit} className={classes.root}>
                 <TextField 
                         autoFocus

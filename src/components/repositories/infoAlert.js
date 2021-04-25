@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { Alert } from '@material-ui/lab'
 import { useSelector } from 'react-redux'
-import { selectError, selectLength, selectUser } from './features/repositories/repositoriesSlice'
+import { selectError, selectLength, selectUser } from '../../features/repositories/repositoriesSlice'
 
 export default function InfoAlert() {
     

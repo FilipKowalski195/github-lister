@@ -1,5 +1,5 @@
 
-import { fetchRepositories, selectError, selectLength, selectLoading, selectUser } from './features/repositories/repositoriesSlice'
+import { fetchRepositories, selectError, selectLength, selectLoading, selectUser } from '../../features/repositories/repositoriesSlice'
 import { useDispatch, useSelector, } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { Fade, CircularProgress } from '@material-ui/core'

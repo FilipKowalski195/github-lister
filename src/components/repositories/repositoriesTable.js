@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { selectRepositories} from './features/repositories/repositoriesSlice'
+import { selectRepositories} from '../../features/repositories/repositoriesSlice'
 import { useSelector, } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
