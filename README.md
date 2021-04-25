@@ -11,12 +11,19 @@ If a user wanted to fetch the repositories of users that does not have any, or d
 > **You must have node.js installed** 
 
 Once you cloned repository with:
+
   > git clone https://github.com/FilipKowalski195/github-lister.git
- Go to the created folder na use 
+
+Go to the created folder na use 
   > npm install 
+
  It might take a little while, when its finish 
   > npm start 
+
  Application should start in your localhost:3000 
+ 
+ 
+### `Video presentation` 
 
 [![IMAGE Git Lister - Overview video](https://img.youtube.com/vi/Tm0TfDslDpM/0.jpg)](https://www.youtube.com/watch?v=Tm0TfDslDpM)
 
