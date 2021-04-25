@@ -19,7 +19,7 @@ Go to the created folder and use command
   ```console
 ~$ npm install 
 ``` 
- It might take a little while, when its finish 
+ It might take a little while, when its finished, use command
   ```console
 ~$ npm start  
 ``` 
